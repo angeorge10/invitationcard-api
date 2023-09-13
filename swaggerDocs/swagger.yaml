@@ -1,0 +1,150 @@
+openapi: 3.0.1
+info:
+  title: Invitation Card API
+  description: Allows user to create an invitation card.
+  version: 1.0.0
+servers:
+- url: http://localhost:3000
+paths:
+  /login:
+    post:
+      summary: Login 
+      description: Logs the user into the app
+      requestBody:
+        required: true
+        description: Credentials
+        $ref: '#/components/requestBodies/Login'
+      responses:
+        200:
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        400:
+          description: Bad Request, pass both email and password
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
+        401:
+          description: Invalid Credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
+        500:
+          description: System failed to respond
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
+  /logout:
+    get:
+      summary: Logout 
+      description: Logout user
+      responses:
+        200:
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+  /signup:
+    post:
+      summary: Adds User
+      description: Adss new user to system
+      requestBody:
+        required: true
+        description: User Details
+        $ref: '#/components/requestBodies/Signup'
+      responses:
+        200:
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SignupResponse'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
+        500:
+          description: System failed to respond
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
+components:
+  schemas:
+    LoginInfo:
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      required: 
+        - email
+        - password
+    SignupInfo:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      required:        
+        - firstName
+        - lastName 
+        - email
+        - password
+    InvalidResponse:
+      type: object
+      properties:
+        message: 
+          type: string
+    LoginResponse:
+      type: object
+      properties:
+        message: 
+          type: string
+          example: 'Logged In'
+    SignupResponse:
+      type: object
+      properties:
+        message: 
+          type: string
+          example: 'User account created'
+    LogoutResponse:
+      type: object
+      properties:
+        message: 
+          type: string
+          example: 'Successfully logged out'
+  requestBodies:
+    Login:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/LoginInfo'
+          example: 
+            email: 'admin@gmail.com'
+            password: 'admin'
+    Signup:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/SignupInfo'
+          example: 
+            firstName: 'Admin'
+            lastName: 'S'
+            email: 'admin@gmail.com'
+            password: 'admin'      
+            

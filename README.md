@@ -1,2 +1,2 @@
 # invitationcard-api
-API for invitation card
+ Manage invitation cards
