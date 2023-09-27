@@ -2,7 +2,7 @@ const db = require("../models");
 const User = db.user;
 const jwt = require('jsonwebtoken');
 //TODO: To be moved to github secret or Parameter store
-const TOKEN_KEY = 'TEAM3-KEY';
+const TOKEN_KEY = process.env.DB_NAME;
 async function login(_req, _res) {
     const { email, password } = _req.body;
     // Validate user input

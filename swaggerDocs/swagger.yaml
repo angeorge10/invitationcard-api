@@ -77,6 +77,55 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InvalidResponse'
+  /friend:
+    post:
+      summary: Adds Friend
+      description: Add new friend against logged in user to system
+      requestBody:
+        required: true
+        description: Friends Details
+        $ref: '#/components/requestBodies/Friend'
+      responses:
+        200:
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FriendResponse'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
+        500:
+          description: System failed to respond
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
+    get:
+      summary: Gets Friends list
+      description: Gets list of all friends for logged in user
+      responses:
+        200:
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FriendsResponse'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
+        500:
+          description: System failed to respond
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
 components:
   schemas:
     LoginInfo:
@@ -128,6 +177,37 @@ components:
         message: 
           type: string
           example: 'Successfully logged out'
+    FriendResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: 'Friend added successfully'
+    FriendInfo:
+      type: object
+      properties:
+        email:
+          type: string
+        name:
+          type: string
+      required: 
+        - email
+        - name
+    FriendsInfo:
+      type: object
+      properties:
+        email:
+          type: string
+        name:
+          type: string
+        id:
+          type: number
+        userId:
+          type: number
+    FriendsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/FriendsInfo'
   requestBodies:
     Login:
       content:
@@ -146,5 +226,13 @@ components:
             firstName: 'Admin'
             lastName: 'S'
             email: 'admin@gmail.com'
-            password: 'admin'      
+            password: 'admin'
+    Friend:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FriendInfo'
+          example: 
+            email: 'admin@gmail.com'
+            name: 'admin'      
             
