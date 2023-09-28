@@ -21,6 +21,7 @@ app.use(require('./src/middlewares/auth'));
 app.use(require('./src/routes/authentication.route'));
 app.use(require('./src/routes/account.route'));
 app.use(require('./src/routes/friend.route'));
+app.use(require('./src/routes/card.route'));
 
 //Start express server
 app.listen(PORT,()=>{
