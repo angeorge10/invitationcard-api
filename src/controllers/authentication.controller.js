@@ -27,7 +27,11 @@ async function login(_req, _res) {
                     }
                 );
                 if (token) {
-                    _res.cookie('jwt-token', token, { httpOnly: true }).json({ message: 'Logged In' });
+                    _res.cookie('jwt-token', token, { httpOnly: true }).json({
+                        email: response[0].email,
+                        firstName: response[0].firstName,
+                        lastName: response[0].lastName
+                    });
                 } else {
                     _res.status(500).json({ message: 'Token not generated' });
                 }

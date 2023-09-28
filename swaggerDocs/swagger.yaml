@@ -49,7 +49,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LoginResponse'
+                $ref: '#/components/schemas/LogoutResponse'
   /signup:
     post:
       summary: Adds User
@@ -162,9 +162,15 @@ components:
     LoginResponse:
       type: object
       properties:
-        message: 
+        email: 
           type: string
-          example: 'Logged In'
+          example: 'name@xyz.com'
+        firstName:
+          type: string
+          example: 'Adam'
+        lastName:
+          type: string
+          eample: 'John'
     SignupResponse:
       type: object
       properties:
