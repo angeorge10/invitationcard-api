@@ -5,7 +5,7 @@ const User = db.user;
 const userDetails = require('../helpers/userDetails');
 
 async function verifyToken(_req, _res, _next) {
- if(_req.url !== '/login' || _req.url !== '/signup') {
+ if(_req.url !== '/login' && _req.url !== '/signup') {
     const token = _req.cookies['jwt-token'];
 
     if(!token) {
