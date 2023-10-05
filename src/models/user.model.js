@@ -1,5 +1,5 @@
-module.exports = (sequelize, Sequelize) => {
-    const User = sequelize.define("user", {
+module.exports = (sequelize, Sequelize, Plan) => {
+    const User = sequelize.define("users", {
         userId: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -24,6 +24,14 @@ module.exports = (sequelize, Sequelize) => {
         },
         loginToken: {
             type: Sequelize.STRING
+        },
+        planId: {
+            type: Sequelize.INTEGER,
+            allowNull: false,
+            references: {
+                model: Plan,
+                key: 'id'
+            }
         }
     });
 

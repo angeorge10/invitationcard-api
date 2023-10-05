@@ -98,6 +98,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InvalidResponse'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
         500:
           description: System failed to respond
           content:
@@ -116,6 +122,73 @@ paths:
                 $ref: '#/components/schemas/FriendsResponse'
         400:
           description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
+        500:
+          description: System failed to respond
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
+  /card:
+    post:
+      summary: Creates Card
+      description: Card creation api for logged in user
+      requestBody:
+        required: true
+        description: Card Details
+        $ref: '#/components/requestBodies/Card'
+      responses:
+        200:
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardResponse'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
+        401:
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
+        500:
+          description: System failed to respond
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
+    get:
+      summary: Gets list of cards created
+      description: Gets list of all cards created by logged in user
+      responses:
+        200:
+          description: Successful Operation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CardsResponse'
+        400:
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
+        401:
+          description: Unauthorized
           content:
             application/json:
               schema:
@@ -214,6 +287,58 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/FriendsInfo'
+    CardResponse:
+      type: object
+      properties:
+        id:
+          type: number
+          example: '1'
+    CardDetails:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        date:
+          type: string
+        time:
+          type: string
+        location:
+          type: string
+        email:
+          type: array
+          items:
+            type: string
+        templateId:
+          type: number
+      required:        
+        - title
+        - date 
+        - location
+        - email
+        - templateId
+    CardsInfo:
+      type: object
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        date:
+          type: string
+        time:
+          type: string
+        location:
+          type: string
+        userId:
+          type: number
+        templateId:
+          type: number
+    CardsResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/CardsInfo'
   requestBodies:
     Login:
       content:
@@ -240,5 +365,18 @@ components:
             $ref: '#/components/schemas/FriendInfo'
           example: 
             email: 'admin@gmail.com'
-            name: 'admin'      
+            name: 'admin'
+    Card:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/CardDetails'
+          example:
+            title: 'Title'
+            description: 'Event description'
+            date: '2023-10-19'
+            time: '10:10'
+            location: 'Location'
+            email: ['a@xyz.com']
+            templateId: 1
             
