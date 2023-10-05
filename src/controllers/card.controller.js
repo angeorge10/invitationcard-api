@@ -3,6 +3,7 @@ const Card = db.card;
 const CardInvitees = db.cardInvitees;
 const sequelize = db.sequelize;
 const userDetails = require("../helpers/userDetails");
+const {sendEmail} = require("../helpers/mailer");
 
 async function create(_req, _res) {
     // Validate request
@@ -55,7 +56,7 @@ async function create(_req, _res) {
                     const finalData = await CardInvitees.bulkCreate(postData, {transaction});
                     return data;
                 });
-                
+                sendEmail(cardDetails, email);
                 _res.status(200)
                     .json({ id: transactionData.id });
             } catch (err) {
