@@ -1,5 +1,5 @@
 const friendModel = (sequelize, Sequelize, User) => {
-    const Friend = sequelize.define("friend", {
+    const Friend = sequelize.define("friends", {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,

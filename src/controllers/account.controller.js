@@ -32,7 +32,8 @@ async function signup(_req, _res) {
                 firstName,
                 lastName,
                 email,
-                password
+                password,
+                planId: 1
             };
             try {
                 const data = await User.create(userDetails);
