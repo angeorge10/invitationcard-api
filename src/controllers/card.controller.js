@@ -15,7 +15,7 @@ async function create(_req, _res) {
         const invalidFields = [];
         const { title, description, date, time, location, email, templateId } = _req.body
         if (!title) {
-            invalidFields.push('name');
+            invalidFields.push('title');
         }
         if (!date) {
             invalidFields.push('date');

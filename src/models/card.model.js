@@ -1,5 +1,5 @@
-const cardModel = (sequelize, Sequelize, User) => {
-    const Card = sequelize.define("card", {
+const cardModel = (sequelize, Sequelize, User, Template) => {
+    const Card = sequelize.define("cards", {
         id: {
             type: Sequelize.INTEGER,
             autoIncrement: true,
@@ -25,7 +25,11 @@ const cardModel = (sequelize, Sequelize, User) => {
         },
         templateId: {
             type: Sequelize.INTEGER,
-            allowNull: false
+            allowNull: false,
+            references: {
+                model: Template,
+                key: 'id'
+            }
         },
         userId: {
             type: Sequelize.INTEGER,
