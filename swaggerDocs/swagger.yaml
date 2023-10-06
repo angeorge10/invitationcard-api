@@ -33,6 +33,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InvalidResponse'
+        409:
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
         500:
           description: System failed to respond
           content:
@@ -71,6 +77,12 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/InvalidResponse'
+        409:
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
         500:
           description: System failed to respond
           content:
@@ -100,6 +112,12 @@ paths:
                 $ref: '#/components/schemas/InvalidResponse'
         401:
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
+        409:
+          description: Conflict
           content:
             application/json:
               schema:
@@ -161,6 +179,12 @@ paths:
                 $ref: '#/components/schemas/InvalidResponse'
         401:
           description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvalidResponse'
+        409:
+          description: Conflict
           content:
             application/json:
               schema:
